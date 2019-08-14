@@ -127,7 +127,7 @@ add_library(tuw_collision_alarm_nodelet
 
 
 add_executable(tuw_collision_alarm_node
-        src/tuw_collision_alarm_node.cpp)
+        src/collision_alarm_node.cpp)
 
 
 

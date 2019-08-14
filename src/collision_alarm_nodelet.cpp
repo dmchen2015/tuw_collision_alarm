@@ -8,9 +8,7 @@ namespace tuw_collision_alarm {
 
         nh_ = getNodeHandle();
         private_nh_ = getPrivateNodeHandle();
-        std::string s1;
 
-        //nh_.param< std::string >("distance_threshold",s1,"0.2");
         private_nh_.param< int >("obstacle_vote_threshold",obstacleOnTheWayVoteThreshold, 5);
         private_nh_.param< double >("distance_threshold",distance_threshold, 0.5);
         NODELET_INFO("distance_threshold %lf meters",distance_threshold);
@@ -130,19 +128,22 @@ namespace tuw_collision_alarm {
 
 
 
-        if ((abruptJumpChecker + 4) < WaypointArrayLastIndexBehind) {
+        if ((abruptJumpChecker + 3) < WaypointArrayLastIndexBehind ) {
+            if (abruptJumpChecker +3 <  poseArray->poses.size() - 1){ // gotta check otherwise it will say abrupt jump when it reaches the goal
             NODELET_INFO("ABRUPT JUMP!");
-            WaypointArrayLastIndexBehind = abruptJumpChecker;
+            WaypointArrayLastIndexBehind = abruptJumpChecker; }
+
         }
 
 
 
         if (i == WaypointArrayLastIndexFront ||
             i == poseArray->poses.size() - 1) { // loop broke cuz we are past the laser range, -> all clear
-            ROS_INFO("ALL CLEAR, SENDING THE LAST INDEX %lu...",i);
+
             WaypointArrayLastIndexFront = 0;
             std_msgs::Int32 index_msg;
-            index_msg.data = poseArray->poses.size();
+            index_msg.data = poseArray->poses.size() - 1;
+            ROS_INFO("ALL CLEAR, SENDING THE LAST INDEX %i...",index_msg.data);
             pub_waypoint_index.publish(index_msg);
 
 
