@@ -18,7 +18,7 @@ There are 2 parameters that can be set via the launch files:
 
 ### What does it do:
 
-This module checks alongside the _Path_ for possible obstacles and in the case of finding one. it publishes an index of the _Path_ that comes before the obstacle. If there are no obstacles, the very last index is published. The name of the topic is _collision_alarm_index_. 
+This module checks alongside the _Path_ for possible obstacles and in the case of finding one, it publishes an index of the _Path_ that comes before the obstacle. If there are no obstacles, the very last index is published. The name of the topic is _collision_alarm_index_. 
 
 ### How does it do it:
 It iterates over the _Path_, creates line segments and check distance of laser beam endpoints to see if there is something that can be considered an obstacle defined by the parameters above. 
