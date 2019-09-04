@@ -3,7 +3,7 @@
     <arg name ="distance_threshold" default="0.2"/>
     <arg name ="obstacle_vote_threshold" default="5"/>
     <group ns="$(arg robot_name)">
-    <node pkg="tuw_collision_alarm" type="tuw_collision_alarm_node" name="collision_alarm_node" output="screen">
+    <node pkg="tuw_collision_alarm" type="tuw_collision_alarm_node" name="collision_alarm_node">
         <param name="distance_threshold" value="$(arg distance_threshold)" />
         <param name="obstacle_vote_threshold" value= "$(arg obstacle_vote_threshold)" />
     </node>
